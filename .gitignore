@@ -1,0 +1,78 @@
+# Created by https://www.toptal.com/developers/gitignore/api/java,maven
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven
+
+### Java ###
+## compiled class files
+*.class
+
+## Log files
+*.log
+
+## BlueJ files
+*.ctxt
+
+## Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+## Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+## virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Exclude all test coverage reports
+**/jacoco.exec
+**/jacocoReport.html
+
+# IntelliJ IDEA specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code specific files
+.vscode/
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+!src/main/resources/application.yml
+!src/main/resources/application.properties
+
+# Ignore other Eclipse or IntelliJ project files
+*.project
+*.classpath
+*.metadata
+*.factorypath
+src/main/resources/.eclipse
+.settings/
+bin/
+
+## Annotation processors
+generated/
+
+# Local environment variables
+.env
+
+### Lombok ###
+*/*/lombok.config
+
+# End of https://www.toptal.com/developers/gitignore/api/java,maven
+/qodana.yaml

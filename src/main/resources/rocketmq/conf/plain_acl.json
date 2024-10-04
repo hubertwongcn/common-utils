@@ -1,0 +1,11 @@
+{
+  "globalWhiteRemoteAddresses": "*",
+  "accounts": [
+    {
+      "accessKey": "testaccesskey",
+      "secretKey": "testsecretkey",
+      "whiteRemoteAddress": "*",
+      "admin": true
+    }
+  ]
+}
