@@ -206,8 +206,8 @@ This project is licensed under the MIT License.
 
 ## Contact
 For any questions regarding this project, feel free to reach out:
-- Email: [your-email@example.com](mailto:your-email@example.com)
-- GitHub: [Your GitHub Profile](https://github.com/your-username)
+- Email: [Hubert Wong](mailto:hubertwongcn@gmail.com)
+- GitHub: [hubertwongcn](https://github.com/hubertwongcn)
 
 # Additional Recommendations and Tips:
 1. **Ensure that Docker and Docker Compose are correctly installed and that your user is part of the `docker` group to avoid permission issues when starting containers.**
