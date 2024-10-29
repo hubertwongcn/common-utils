@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ThreadPoolConfig {
 
-    @Bean(name = "slinkPackageOpThreadPoolExecutor")
-    public CustomThreadPoolExecutor slinkPackageOpProducerThreadPoolExecutor() {
-        return ThreadPoolFactory.createThreadPool(1, 1, 1L, "slink-package-op-producer-thread-pool");
+    @Bean(name = "packageOpThreadPoolExecutor")
+    public CustomThreadPoolExecutor packageOpProducerThreadPoolExecutor() {
+        return ThreadPoolFactory.createThreadPool(1, 1, 1L, "package-op-producer-thread-pool");
     }
 
-    @Bean(name = "slinkPackageOpConsumerThreadPoolExecutor")
+    @Bean(name = "packageOpConsumerThreadPoolExecutor")
     public CustomThreadPoolExecutor consumerThreadPoolExecutor() {
-        return ThreadPoolFactory.createThreadPool(10, 20, 1L, "slink-package-op-consumer-thread-pool");
+        return ThreadPoolFactory.createThreadPool(10, 20, 1L, "package-op-consumer-thread-pool");
     }
 }

@@ -31,7 +31,7 @@ public class PackageBindOpProducerHandler extends DistributedLockMessageProducer
     public PackageBindOpProducerHandler(
             @Qualifier("packageBindOpProducer") DefaultMQProducer packageBindOpProducer,
             PackageBindOpPropertiesProducer properties,
-            @Qualifier("slinkPackageOpThreadPoolExecutor") ThreadPoolExecutor executorService,
+            @Qualifier("packageOpThreadPoolExecutor") ThreadPoolExecutor executorService,
             DistributedLock distributedLock,
             RedisKeyProperties redisKeyProperties) {
         super(packageBindOpProducer, properties, executorService, distributedLock, redisKeyProperties.getPackageChangeMsg());

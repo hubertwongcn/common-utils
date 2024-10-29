@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Configuration;
  * Example application.properties:
  * <p>
  * distributed.lock.prefix.ehomeOrder=ehome:order:
- * distributed.lock.prefix.packageChangeSlinkMsg=${distributed.lock.prefix.ehomeOrder}package:slink:msg:lock
+ * distributed.lock.prefix.packageChangeMsg=${distributed.lock.prefix.ehomeOrder}package:msg:lock
  * <p>
- * If distributed.lock.prefix.ehomeOrder and distributed.lock.prefix.packageChangeSlinkMsg
+ * If distributed.lock.prefix.ehomeOrder and distributed.lock.prefix.packageChangeMsg
  * are not configured in application.properties, the provided default values will be used.
  *
  * @author hubertwong
