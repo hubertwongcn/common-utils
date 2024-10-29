@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 @Component
 public class UserDeviceOpConsumerHandler extends AbstractMessageConsumerHandler {
     public UserDeviceOpConsumerHandler(@Qualifier("packageBindOpConsumer") DefaultMQPushConsumer consumer,
-                                       @Qualifier("slinkPackageOpConsumerThreadPoolExecutor") ExecutorService executorService) {
+                                       @Qualifier("packageOpConsumerThreadPoolExecutor") ExecutorService executorService) {
         super(consumer, executorService);
     }
 
