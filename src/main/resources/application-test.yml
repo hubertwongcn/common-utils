@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: common-utils
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+rocketmq:
+  producer:
+    package-bind-op:
+      name-server: ${ROCKETMQ_PRODUCER_NAME_SERVER:localhost:9876}
+      group: ${ROCKETMQ_PRODUCER_GROUP:test-group}
+      topic: ${ROCKETMQ_PRODUCER_TOPIC:test-topic}
+      tag: ${ROCKETMQ_PRODUCER_TAG:test-tag}
+      retry-another-broker-when-not-store-o-k: true
+      retry-times-when-send-failed: 3
+      send-msg-timeout: 3000
+  consumer:
+    package-bind-op:
+      name-server: ${ROCKETMQ_CONSUMER_NAME_SERVER:localhost:9876}
+      group: ${ROCKETMQ_CONSUMER_GROUP:test-group}
+      topic: ${ROCKETMQ_CONSUMER_TOPIC:test-topic}
+      tag: ${ROCKETMQ_CONSUMER_TAG:test-tag}
+redis:
+  key:
+    prefix:
+      common-prefix: 'common:utils'
+      package-change-msg: 'package:change:msg:key:'
