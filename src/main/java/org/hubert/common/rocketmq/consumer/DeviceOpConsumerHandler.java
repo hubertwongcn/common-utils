@@ -3,7 +3,7 @@ package org.hubert.common.rocketmq.consumer;
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
-import org.hubert.common.rocketmq.msg.UserDeviceOpMsg;
+import org.hubert.common.rocketmq.msg.DeviceOpMsg;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -16,18 +16,18 @@ import java.util.concurrent.ExecutorService;
  */
 @Slf4j
 @Component
-public class UserDeviceOpConsumerHandler extends AbstractMessageConsumerHandler {
-    public UserDeviceOpConsumerHandler(@Qualifier("packageBindOpConsumer") DefaultMQPushConsumer consumer,
-                                       @Qualifier("packageOpConsumerThreadPoolExecutor") ExecutorService executorService) {
+public class DeviceOpConsumerHandler extends AbstractMessageConsumerHandler {
+    public DeviceOpConsumerHandler(@Qualifier("packageBindOpConsumer") DefaultMQPushConsumer consumer,
+                                   @Qualifier("packageOpConsumerThreadPoolExecutor") ExecutorService executorService) {
         super(consumer, executorService);
     }
 
     @Override
     public boolean processMessage(String message) {
         try {
-            UserDeviceOpMsg userDeviceOpMsg = JSON.parseObject(message, UserDeviceOpMsg.class);
+            DeviceOpMsg deviceOpMsg = JSON.parseObject(message, DeviceOpMsg.class);
             // business logic processing
-            log.info("Consumed message: " + userDeviceOpMsg);
+            log.info("Consumed message: " + deviceOpMsg);
             return true;
         } catch (Exception e) {
             log.error("Failed to process message: " + message, e);

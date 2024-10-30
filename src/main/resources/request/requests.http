@@ -1,0 +1,102 @@
+###
+@base_url = http://localhost:8080
+
+###
+# Step 1: Sign up new user
+POST {{base_url}}/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "js0urj0mefdf",
+  "email": "test@gmail.com",
+  "roles": ["ROLE_ADMIN"]
+}
+
+###
+# Step 2: Sign in and get token and refreshToken
+POST {{base_url}}/api/auth/signin
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "js0urj0mefdf"
+}
+
+> {%
+    client.test("Extract token and refreshToken from signin and set global variables", () => {
+        console.log("Signin Response Body:", response.body);
+        try {
+            const responseBody = typeof response.body === "string" ? JSON.parse(response.body) : response.body; // Parse JSON response body if it's a string
+            if (responseBody.code === 200) {
+                const token = responseBody.data.token; // Extract token
+                const refreshToken = responseBody.data.refreshToken; // Extract refreshToken
+                client.global.set("token", token); // Set token as global variable
+                client.global.set("refreshToken", refreshToken); // Set refreshToken as global variable
+                // Log the tokens
+                console.log("Token and refreshToken have been refreshed");
+                console.log("Global token:", client.global.get("token"));
+                console.log("Global refreshToken:", client.global.get("refreshToken"));
+            } else {
+                console.log("Failed to refresh token", responseBody); // Log the failure to refresh token
+            }
+        } catch (e) {
+            console.log("Error while parsing JSON response in refreshToken test", e.message); // Log detailed error message
+            console.log("Raw Body:", response.body); // Log the raw body content
+        }
+    });
+%}
+
+###
+# Step 3: Use refreshToken to refresh token
+POST {{base_url}}/api/auth/refreshToken
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+> {%
+    client.test("Extract token and set global variables from refreshToken response", () => {
+        console.log("RefreshToken Response Body:", response.body); // Log the response body for debugging
+        try {
+            const responseBody = typeof response.body === "string" ? JSON.parse(response.body) : response.body; // Parse JSON response body if it's a string
+            if (responseBody.code === 200) {
+                const token = responseBody.data.token; // Extract token
+                const refreshToken = responseBody.data.refreshToken; // Extract refreshToken
+                client.global.set("token", token); // Set token as global variable
+                client.global.set("refreshToken", refreshToken); // Set refreshToken as global variable
+                // Log the tokens
+                console.log("Token and refreshToken have been refreshed");
+                console.log("Global token:", client.global.get("token"));
+                console.log("Global refreshToken:", client.global.get("refreshToken"));
+            } else {
+                console.log("Failed to refresh token", responseBody); // Log the failure to refresh token
+            }
+        } catch (e) {
+            console.log("Error while parsing JSON response in refreshToken test", e.message); // Log detailed error message
+            console.log("Raw Body:", response.body); // Log the raw body content
+        }
+    });
+%}
+
+###
+# Step 4: Send message using token
+POST {{base_url}}/rocketmq/sendAsync
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "appId": "2343242",
+  "userCode": "243521sdf3412",
+  "deviceCode": "fdf3s3d23dsf",
+  "packageId": "32s3412fds3",
+  "packageSource": "1",
+  "packageType": 0,
+  "bindType": 0
+}
+
+###
+# Step 5: Test rocketmq endpoint using token
+GET {{base_url}}/rocketmq/test
+Authorization: Bearer {{token}}

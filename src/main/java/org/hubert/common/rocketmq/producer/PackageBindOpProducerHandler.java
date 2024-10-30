@@ -7,7 +7,7 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.hubert.common.locks.DistributedLock;
 import org.hubert.common.properties.PackageBindOpPropertiesProducer;
 import org.hubert.common.properties.RedisKeyProperties;
-import org.hubert.common.rocketmq.msg.UserDeviceOpMsg;
+import org.hubert.common.rocketmq.msg.DeviceOpMsg;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -41,23 +41,23 @@ public class PackageBindOpProducerHandler extends DistributedLockMessageProducer
     /**
      * Sends a synchronous message for user device operations.
      *
-     * @param userDeviceOpMsg the user device operation message that needs to be sent
+     * @param deviceOpMsg the user device operation message that needs to be sent
      * @return the result of the send operation
      */
-    public SendResult sendSync(UserDeviceOpMsg userDeviceOpMsg) {
-        byte[] body = JSON.toJSONString(userDeviceOpMsg).getBytes();
+    public SendResult sendSync(DeviceOpMsg deviceOpMsg) {
+        byte[] body = JSON.toJSONString(deviceOpMsg).getBytes();
         return sendMessageSync(properties.getTopic(), properties.getTag(),
-                userDeviceOpMsg.getUserCode() + userDeviceOpMsg.getPackageId(), body, 0);
+                deviceOpMsg.getUserCode() + deviceOpMsg.getPackageId(), body, 0);
     }
 
     /**
      * Sends an asynchronous message for user device operations.
      *
-     * @param userDeviceOpMsg the user device operation message that needs to be sent
+     * @param deviceOpMsg the user device operation message that needs to be sent
      */
-    public void sendAsync(UserDeviceOpMsg userDeviceOpMsg) {
-        byte[] body = JSON.toJSONString(userDeviceOpMsg).getBytes();
+    public void sendAsync(DeviceOpMsg deviceOpMsg) {
+        byte[] body = JSON.toJSONString(deviceOpMsg).getBytes();
         sendMessageAsync(properties.getTopic(), properties.getTag(),
-                userDeviceOpMsg.getUserCode() + userDeviceOpMsg.getPackageId(), body, 0);
+                deviceOpMsg.getUserCode() + deviceOpMsg.getPackageId(), body, 0);
     }
 }

@@ -42,7 +42,29 @@ public class RedisKeyProperties {
      */
     private String packageChangeMsg = "package:change:msg:key:";
 
+    /**
+     * Represents the key prefix for storing refresh tokens in Redis.
+     * This string is used as part of a larger key in Redis to store or retrieve
+     * refresh token-related data.
+     */
+    private String refreshTokenKey = "refresh:token:key:";
+
+    /**
+     * Represents the key prefix for storing user JWTs in Redis.
+     * This string is used as part of a larger key in Redis to store or retrieve
+     * user JWT-related data.
+     */
+    private String userJwtKey = "user:jwt:key:";
+
     public String getPackageChangeMsg() {
         return commonPrefix + packageChangeMsg;
+    }
+
+    public String getRefreshTokenKey() {
+        return commonPrefix + refreshTokenKey;
+    }
+
+    public String getUserJwtKey() {
+        return commonPrefix + userJwtKey;
     }
 }

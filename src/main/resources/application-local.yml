@@ -6,6 +6,21 @@ spring:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
       password: ${REDIS_PASSWORD:}
+  datasource:
+    url: jdbc:mysql://${MYSQL_URL:localhost:3306/common-utils}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      pool-name: CommonUtilsHikariCP
+      max-lifetime: 2000000
+      connection-timeout: 30000
+      leak-detection-threshold: 15000
+  jpa:
+    show-sql: true
+    open-in-view: false
 rocketmq:
   producer:
     package-bind-op:
@@ -25,5 +40,12 @@ rocketmq:
 redis:
   key:
     prefix:
-      common-prefix: 'common:utils'
+      common-prefix: 'common:utils:'
       package-change-msg: 'package:change:msg:key:'
+      refresh-token-key: 'refresh:token:key:'
+      user-jwt-key: 'user:jwt:key:'
+jwt:
+  refresh-expiration-ms: 2592000000
+  secret: ${JWT_SECRET:Ar/5FP7n80Szh0JFlD/iSxTuzHVuIwHhiKiRzISwaFW1ILVMuqZ+gkTVHz8sENINw5DLFLgZ5gXG41EdOYKSXA==}
+  expiration-in-ms: 900000
+  generate-times: 5
