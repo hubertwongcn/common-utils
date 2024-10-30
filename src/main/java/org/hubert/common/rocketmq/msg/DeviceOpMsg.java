@@ -11,35 +11,41 @@ import lombok.Data;
  * @since 2024/9/13 09:46
  */
 @Data
-public class UserDeviceOpMsg {
+public class DeviceOpMsg {
     /**
      * App ID
      */
     private String appId;
+
     /**
-     * 用户名(手机号)
+     * Username (phone number)
      */
     private String userCode;
+
     /**
-     * 设备码
+     * Device code
      */
     private String deviceCode;
+
     /**
-     * 套餐ID
+     * Package ID
      */
     private String packageId;
+
     /**
-     * 套餐来源
+     * Package source
      */
     private String packageSource;
+
     /**
-     * 订单类型
+     * Order type
      */
     private Integer packageType;
+
     /**
-     * 套餐变更类型：
-     * 0:解绑
-     * 1:绑定
+     * Package change type:
+     * 0: Unbind
+     * 1: Bind
      */
     private Integer bindType;
 }

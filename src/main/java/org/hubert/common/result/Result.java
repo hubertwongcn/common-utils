@@ -21,6 +21,10 @@ public class Result<T> {
     private String message;
     private T data;
 
+    public static <T> Result<T> success() {
+        return new Result<>(ResponseEnum.SUCCESS.getCode(), ResponseEnum.SUCCESS.getMessage(), null);
+    }
+
     public static <T> Result<T> success(T data) {
         return new Result<>(ResponseEnum.SUCCESS.getCode(), ResponseEnum.SUCCESS.getMessage(), data);
     }

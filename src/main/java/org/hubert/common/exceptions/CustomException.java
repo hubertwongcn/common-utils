@@ -1,6 +1,7 @@
 package org.hubert.common.exceptions;
 
 import lombok.Getter;
+import org.hubert.common.enums.ResponseEnum;
 
 /**
  * @author hubertwong
@@ -14,5 +15,10 @@ public class CustomException extends RuntimeException {
     public CustomException(Integer code, String message) {
         super(message);
         this.code = code;
+    }
+
+    public CustomException(ResponseEnum responseEnum) {
+        super(responseEnum.getMessage());
+        this.code = responseEnum.getCode();
     }
 }

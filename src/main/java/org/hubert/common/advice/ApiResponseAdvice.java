@@ -2,6 +2,8 @@ package org.hubert.common.advice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hubert.common.enums.ResponseEnum;
+import org.hubert.common.exceptions.CustomException;
 import org.hubert.common.result.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @version 1.0
  * @since 2024/10/2 13:32
  */
-@ControllerAdvice/*(basePackages = "org.hubert.common.utils.controller")*/
+@ControllerAdvice
 public class ApiResponseAdvice<T> implements ResponseBodyAdvice<T> {
 
     @Override
@@ -34,6 +36,7 @@ public class ApiResponseAdvice<T> implements ResponseBodyAdvice<T> {
             return body;
         }
         if ((body instanceof String)) {
+            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
             return toJson(body);
         }
         return wrapAsResult(body);
@@ -49,7 +52,7 @@ public class ApiResponseAdvice<T> implements ResponseBodyAdvice<T> {
         try {
             return (T) new ObjectMapper().writeValueAsString(Result.success(body));
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Unable to forward json request", e);
+            throw new CustomException(ResponseEnum.INTERNAL_SERVER_ERROR.getCode(), "Unable to forward json response");
         }
     }
 }
