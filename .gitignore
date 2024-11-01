@@ -53,15 +53,15 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-!src/main/resources/application.yml
-!src/main/resources/application.properties
+!common-demo/src/main/resources/application.yml
+!common-demo/src/main/resources/application.properties
 
 # Ignore other Eclipse or IntelliJ project files
 *.project
 *.classpath
 *.metadata
 *.factorypath
-src/main/resources/.eclipse
+common-demo/src/main/resources/.eclipse
 .settings/
 bin/
 
